@@ -1,0 +1,240 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smart Skin Care - طبيب البشرة الذكي</title>
+     <link rel="stylesheet" href="{% static 'style.css' %}" />
+    
+</head>
+<style>
+    * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Tajawal', sans-serif;
+        }
+
+        body {
+            background-color: #f4f7f6;
+            color: #2c3e50;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .chat-container {
+            width: 100%;
+            max-width: 850px;
+            height: 90vh;
+            background: #ffffff;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            border: 1px solid #e2e8f0;
+        }
+
+       
+        .chat-header {
+            background: linear-gradient(135deg, #10b981, #059669);
+            color: white;
+            padding: 16px 24px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            box-shadow: 0 4px 12px rgba(16, 185, 129, 0.2);
+        }
+
+        .chat-header h2 {
+            font-size: 1.3rem;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .back-btn {
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            text-decoration: none;
+            padding: 8px 16px;
+            border-radius: 12px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: all 0.2s ease;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .back-btn:hover {
+            background: rgba(255, 255, 255, 0.35);
+            transform: translateX(3px);
+        }
+
+       
+        .chat-messages {
+            flex: 1;
+            padding: 24px;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+            background-color: #f8fafc;
+        }
+
+        .message {
+            max-width: 75%;
+            padding: 14px 18px;
+            border-radius: 16px;
+            font-size: 0.98rem;
+            line-height: 1.6;
+            word-wrap: break-word;
+        }
+
+        .message.user {
+            align-self: flex-start;
+            background-color: #10b981;
+            color: white;
+            border-bottom-right-radius: 4px;
+            box-shadow: 0 4px 10px rgba(16, 185, 129, 0.15);
+        }
+
+        .message.ai {
+            align-self: flex-end;
+            background-color: #ffffff;
+            color: #1e293b;
+            border: 1px solid #e2e8f0;
+            border-bottom-left-radius: 4px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+        }
+
+        .message img {
+            max-width: 100%;
+            border-radius: 10px;
+            margin-top: 8px;
+        }
+
+   
+        .chat-form {
+            padding: 16px 20px;
+            background: #ffffff;
+            border-top: 1px solid #e2e8f0;
+            display: flex;
+            gap: 12px;
+            align-items: center;
+        }
+
+        .input-group {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            background: #f1f5f9;
+            border-radius: 14px;
+            padding: 4px 12px;
+            border: 1px solid #cbd5e1;
+            transition: border-color 0.2s;
+        }
+
+        .input-group:focus-within {
+            border-color: #10b981;
+            background: #ffffff;
+        }
+        .input-group input[type="text"] {
+            flex: 1;
+            border: none;
+            background: transparent;
+            padding: 10px;
+            font-size: 0.95rem;
+            outline: none;
+            color: #334155;
+        }
+
+        .file-label {
+            cursor: pointer;
+            padding: 8px 12px;
+            background: #e2e8f0;
+            border-radius: 10px;
+            font-size: 0.85rem;
+            color: #475569;
+            transition: background 0.2s;
+        }
+
+        .file-label:hover {
+            background: #cbd5e1;
+        }
+
+        .file-label input {
+            display: none;
+        }
+
+        .send-btn {
+            background: #10b981;
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 14px;
+            font-size: 0.95rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .send-btn:hover {
+            background: #059669;
+            transform: translateY(-1px);
+        }
+</style>
+<body>
+
+    <div class="chat-container">
+        <div class="chat-header">
+            <h2>🩺 طبيب البشرة الذكي</h2>
+            <a href="{% url 'home' %}" class="back-btn">
+                <span>الرئيسية</span> →
+            </a>
+        </div>
+
+        <div class="chat-messages" id="chatMessages">
+            {% for msg in all_messages %}
+                <div class="message {{ msg.sender }}">
+                    {% if msg.text_content %}
+                        <p>{{ msg.text_content|safe }}</p>
+                    {% endif %}
+                    {% if msg.image %}
+                        <img src="{{ msg.image.url }}" alt="صورة المريض">
+                    {% endif %}
+                </div>
+            {% empty %}
+                <div class="message ai">
+                    مرحباً بك! أنا مستشارك الذكي للعناية بالبشرة. كيف يمكنني مساعدتك اليوم؟ يمكنك كتابة استفسارك أو إرفاق صورة لحالتك.
+                </div>
+            {% endfor %}
+        </div>
+
+       <form class="chat-form" method="POST" enctype="multipart/form-data">
+    {% csrf_token %}
+    <div id="image-preview-container" style="display: none; position: relative; margin-bottom: 8px; width: fit-content;">
+        <img id="image-preview" src="" alt="معاينة الصورة" style="width: 60px; height: 60px; object-fit: cover; border-radius: 8px; border: 1px solid #ccc;">
+        <button type="button" id="remove-image-btn" style="position: absolute; top: -5px; right: -5px; background: #ff4d4d; color: white; border: none; border-radius: 50%; width: 20px; height: 20px; cursor: pointer; font-size: 12px; line-height: 1;">×</button>
+    </div>
+    <div class="input-group">
+        <input type="text" name="message_text" placeholder="اشرح حالة بشرتك أو اطرح سؤالك هنا..." autocomplete="off">
+        <label class="file-label">
+            📷 صورة
+            <input type="file" id="message-image-input" name="message_image" accept="image/*">
+        </label>
+    </div>
+    <button type="submit" class="send-btn">إرسال</button>
+</form>
+
+    </div>
+<script src="{% static 'chat.js' %}"></script>
+   
+</body>
+</html>

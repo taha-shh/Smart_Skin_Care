@@ -1,0 +1,126 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>من نحن؟</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+    integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link rel="stylesheet" href="{% static 'style.css' %}" />
+</head>
+
+<body>
+  <!-- start header section -->
+  <header>
+    <div class="container">
+      <a href="#">
+        <img class="logo" src="{% static 'image/logo.jpg '%}" alt="logo">
+      </a>
+      <nav class="nav-bar">
+        <ul>
+          <li><a href="{% url 'home' %}" target="_blank">الرئيسية</a></li>
+          <li><a href="{% url 'about' %}" target="_blank">من نحن؟</a></li>
+           {% if latest_session_id %}
+          <li><a href="{% url 'skin_chat_session' session_id=latest_session_id %}" target="_blank">إبدأ فحصك</a></li>
+              {% else %}
+          <li><a href="{% url 'skin_chat_new' %}" target="_blank">إبدأ فحصك</a></li>
+              {% endif %}
+          <li><a href="{% url 'products' %}" target="_blank">المنتجات المحلية</a></li>
+        </ul>
+      </nav>
+      <div class="social">
+        <i class="fa-brands fa-facebook"></i>
+        <i class="fa-brands fa-instagram"></i>
+        <i class="fa-brands fa-youtube"></i>
+        <i class="fa-brands fa-whatsapp"></i>
+      </div>
+    </div>
+  </header>
+  <!-- end header section -->
+
+  <!-- start about intro section -->
+  <section class="about-intro">
+    <div class="container">
+      <div class="intro-title">
+        <h1>مرحباً بكم في موقعنا</h1>
+      </div>
+      <div class="intro-item">
+        <h2>ماهو موقعنا؟</h2>
+        <p>
+          هو منصة رقمية متطورة تدمج بين علوم العناية بالبشرة وتقنيات الذكاء الاصطناعي، لتمكين الأفراد من فهم احتياجات
+          بشرتهم بدقة وتوجيههم نحو الروتين الأمثل باستخدام المنتجات المحلية المتوفرة.
+        </p>
+
+        <h2>رؤية الموقع:</h2>
+        <p>
+          تقليل الاعتماد على الاستشارات العشوائية وتوفير حلول فورية وآمنة للجميع.
+        </p>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- end about intro section -->
+
+  <!-- start advices section -->
+  <section class="services">
+    <div class="container">
+      <h2 class="section-title">نصائح طبية سريعة</h2>
+      <p class="section-desc">
+        إليكِ أهم القواعد العلمية الأساسية للحفاظ على صحة ونضارة بشرتكِ يومياً
+      </p>
+
+      <div class="all-services">
+        <div class="service">
+          <i class="fa-solid fa-sun" style="font-size: 40px; color: #1c4400; margin-bottom: 15px;"></i>
+          <h3>حماية لا غنى عنها</h3>
+          <p>
+            استخدام واقي الشمس يومياً يحمي البشرة من الشيخوخة المبكرة والتصبغات الناتجة عن الأشعة فوق البنفسجية.
+          </p>
+        </div>
+
+        <div class="service">
+          <i class="fa-solid fa-droplet" style="font-size: 40px; color: #1c4400; margin-bottom: 15px;"></i>
+          <h3>أساس التوازن</h3>
+          <p>
+            ترطيب البشرة يحمي حاجز الجلد الطبيعي، ويمنع الإفراز المفرط للزيوت سواء كانت بشرتكِ جافة أو دهنية.
+          </p>
+        </div>
+
+        <div class="service">
+          <i class="fa-solid fa-wand-magic-sparkles" style="font-size: 40px; color: #1c4400; margin-bottom: 15px;"></i>
+          <h3>القاعدة الذهبية</h3>
+          <p>
+            تنظيف البشرة مساءً يزيل الأتربة وبقايا واقي الشمس المتراكمة طوال اليوم لتجنب انسداد المسام.
+          </p>
+        </div>
+
+        <div class="service">
+          <i class="fa-solid fa-calendar-check" style="font-size: 40px; color: #1c4400; margin-bottom: 15px;"></i>
+          <h3>الاستمرارية والالتزام</h3>
+          <p>
+            منتجات العناية تحتاج من 4 إلى 6 أسابيع لإظهار نتائجها الحقيقية. الصبر هو سر البشرة الصحية.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- end advices section -->
+
+
+  <!-- start footer section -->
+
+  <footer>
+    <div class="container">
+      <p class="footer-text">جميع الحقوق محفوظة &copy; 2026 Smart Skin Care</p>
+    </div>
+  </footer>
+
+  <!-- end footer section -->
+   <script src="{% static 'chat.js' %}"></script>
+</body>
+
+</html>

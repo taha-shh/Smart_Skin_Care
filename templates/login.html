@@ -1,0 +1,75 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ar">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>تسجيل الدخول</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+    integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link rel="stylesheet" href="{% static 'style.css' %}" />
+</head>
+
+<body class="login-body">
+
+  <div class="login-container">
+    <div class="login-card">
+      
+      <div class="login-header">
+        <h2>تسجيل الدخول</h2>
+        <p>تسجيل الدخول لِ العناية الذكية بالبشرة </p>
+      </div>
+      
+      {% if messages %}
+        <div style="width: 100%; margin-bottom: 15px;">
+            {% for message in messages %}
+                {% if message.tags == 'error' %}
+                    <div style="padding: 12px; color: white; background-color: #e74c3c; border-radius: 6px; text-align: center; font-weight: bold; font-size: 14px;">
+                        {{ message }}
+                    </div>
+                {% else %}
+                    <div style="padding: 12px; color: white; background-color: #2ecc71; border-radius: 6px; text-align: center; font-weight: bold; font-size: 14px;">
+                        {{ message }}
+                    </div>
+                {% endif %}
+            {% endfor %}
+        </div>
+      {% endif %}
+
+      <form class="login-form" method="post" action="{% url 'login' %}" autocomplete="off">
+        {% csrf_token %}
+
+        <div class="input-group">
+          <label for="username">اسم المستخدم</label>
+          <div class="input-wrapper">
+            <i class="fa-solid fa-envelope"></i>
+            <input type="text" id="username" name="username" placeholder="اسم المستخدم" required oninvalid="this.setCustomValidity('الرجاء إدخال اسم المستخدم الخاص بك')" oninput="this.setCustomValidity('')">
+          </div>
+        </div>
+
+        <div class="input-group">
+          <label for="password">كلمة المرور</label>
+          <div class="input-wrapper">
+            <i class="fa-solid fa-lock"></i>
+            <input type="password" name="password" id="password" placeholder="••••••••" required oninvalid="this.setCustomValidity('الرجاء كتابة كلمة المرور')" oninput="this.setCustomValidity('')">
+          </div>
+        </div>
+
+        <button type="submit" class="btn-login">دخول</button>
+        
+        <a href="{% url 'home' %}" class="btn-back-home">
+          <span>الرئيسية</span> →
+        </a>
+      </form>
+
+      <div class="login-footer">
+        <p>ليس لديكِ حساب؟ <a href="{% url 'register' %}">أنشئي حسابكِ الآن</a></p>
+      </div>
+
+    </div>
+  </div>
+<script src="{% static 'chat.js' %}"></script>
+</body>
+</html>

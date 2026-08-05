@@ -1,0 +1,322 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>المنتجات المحلية</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+        integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="{% static 'style.css' %}">
+</head>
+
+<body>
+
+    <!-- start header section -->
+    <header>
+        <div class="container">
+            <a href="#">
+                <img class="logo" src="{% static 'image/logo.jpg' %}" alt="logo">
+            </a>
+            <nav class="nav-bar">
+                <ul>
+                    <li><a href="{% url 'home' %}" target="_blank">الرئيسية</a></li>
+                    <li><a href="{% url 'about' %}" target="_blank">من نحن؟</a></li>
+                    {% if latest_session_id %}
+                    <li><a href="{% url 'skin_chat_session' session_id=latest_session_id %}" target="_blank">إبدأ فحصك</a></li>
+                    {% else %}
+                    <li><a href="{% url 'skin_chat_new' %}" target="_blank">إبدأ فحصك</a></li>
+                    {% endif %}
+                    <li><a href="{% url 'products' %}" target="_blank">المنتجات المحلية</a></li>
+                    <li><a href="{% url 'login' %}" target="_blank" class="nav-login-btn">تسجيل الدخول</a></li>
+                </ul>
+            </nav>
+            <div class="social">
+                <i class="fa-brands fa-facebook"></i>
+                <i class="fa-brands fa-instagram"></i>
+                <i class="fa-brands fa-youtube"></i>
+                <i class="fa-brands fa-whatsapp"></i>
+            </div>
+        </div>
+    </header>
+    <!-- End header section -->
+
+    <!-- start products-grid section -->
+    <div class="products-container">
+        <h2 class="section-title">منتجات العناية الموصى بها</h2>
+
+        <!-- start search section -->
+        <div class="search-container">
+            <input type="text" id="search-input" placeholder="ابحث عن منتج أو نوع العناية..." onkeyup="filterProducts()">
+            <button class="search-btn" type="button" onclick="filterProducts()">
+                بحث <i class="fa-solid fa-magnifying-glass"></i>
+            </button>
+        </div>
+        <!-- end search section -->
+
+        <div class="products-grid" id="products-container">
+
+            <div class="product-card">
+                <div class="card-inner">
+                    <div class="card-front">
+                        <span class="product-tybe">تونر بشرة</span>
+                        <img src="{% static 'image/centella-rose.jpg' %}" alt="تونر بشرة" style="width: 200px;">
+                        <h3>غسول رغوي منظف</h3>
+                        <p class="product-brief">تونر علاجي متطور الأول من نوعه بالعالم.</p>
+                        <button class="flip-btn" onclick="flipCard(this)">المزيد <i class="fa-solid fa-rotate"></i></button>
+                    </div>
+                    <div class="card-back">
+                        <h3>المكونات والفوائد</h3>
+                        <ul class="product-details-list">
+                            <li><i class="fa-solid fa-check"></i>يجمع بين ماء الورد وخلاصة السانتيلا الاسيوية</li>
+                            <li><i class="fa-solid fa-check"></i>يهدء التهيج ويرطب ويدعم حاجز البشرة</li>
+                            <li><i class="fa-solid fa-check"></i>يعيد توازن رطوبة البشرة</li>
+                        </ul>
+                        <button class="flip-btn back-btn" onclick="flipCard(this)">عودة <i class="fa-solid fa-arrow-left"></i></button>
+                    </div>
+                </div>
+            </div>
+            <div class="product-card">
+                <div class="card-inner">
+                    <div class="card-front">
+                        <span class="product-tybe">واقي شمس</span>
+                        <img src="{% static 'image/presun.jpg' %}" style="width: 300px;" alt="">
+                        <h3>واقي شمس بري سن</h3>
+                        <p class="product-brief">حماية فائقة من أشعة الشمس فوق البنفسجية بتركيبة خفيفة.</p>
+                        <button class="flip-btn" onclick="flipCard(this)">المزيد <i class="fa-solid fa-rotate"></i></button>
+                    </div>
+                    <div class="card-back">
+                        <h3>المكونات والفوائد</h3>
+                        <ul class="product-details-list">
+                            <li><i class="fa-solid fa-check"></i>حماية عالية: يوفر دعماً واقياً فعّالاً.</li>
+                            <li><i class="fa-solid fa-check"></i>عناية متكاملة: يحتوي على مضادات أكسدة, الألوفيرا, الشوفان وغيرها من الفيتامينات.</li>
+                            <li><i class="fa-solid fa-check"></i>يحتوي على إصدارات عديدة تناسب جميع البشرات.</li>
+                        </ul>
+                        <button class="flip-btn back-btn" onclick="flipCard(this)">عودة <i class="fa-solid fa-arrow-left"></i></button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="product-card">
+                <div class="card-inner">
+                    <div class="card-front">
+                        <span class="product-tybe">كورس تفتيح البشرة</span>
+                        <img src="{% static 'image/lightening-course.jpg' %}" style="width: 200px;" alt="">
+                        <h3>سلسلة منتجات تفتيح</h3>
+                        <p class="product-brief">روتين فعال مجمّع في ثلاث خطوات من اناتوليا.</p>
+                        <button class="flip-btn" onclick="flipCard(this)">المزيد <i class="fa-solid fa-rotate"></i></button>
+                    </div>
+                    <div class="card-back">
+                        <h3>المكونات والفوائد</h3>
+                        <ul class="product-details-list">
+                            <li><i class="fa-solid fa-check"></i>تونر غليكوليك أسيد 7%.</li>
+                            <li><i class="fa-solid fa-check"></i>أناتوليا وايت كريم.</li>
+                            <li><i class="fa-solid fa-check"></i>سيراميد لوشن.</li>
+                        </ul>
+                        <button class="flip-btn back-btn" onclick="flipCard(this)">عودة <i class="fa-solid fa-arrow-left"></i></button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="product-card">
+                <div class="card-inner">
+                    <div class="card-front">
+                        <span class="product-tybe">غسول بشرة</span>
+                        <img src="{% static 'image/eventalen-hydration.jpg' %}" style="width: 130px;" alt="">
+                        <h3>غسول من ايفنتالين</h3>
+                        <p class="product-brief">غسول يومي يناسب جميع انواع البشرة.</p>
+                        <button class="flip-btn" onclick="flipCard(this)">المزيد <i class="fa-solid fa-rotate"></i></button>
+                    </div>
+                    <div class="card-back">
+                        <h3>المكونات والفوائد</h3>
+                        <ul class="product-details-list">
+                            <li><i class="fa-solid fa-check"></i>يحتوي على حمض الساليسيليك</li>
+                            <li><i class="fa-solid fa-check"></i>ويحتوي على الألوفيرا.</li>
+                            <li><i class="fa-solid fa-check"></i>ينظف المسام ويمنع الجفاف أثناء التنظيف العميق.</li>
+                        </ul>
+                        <button class="flip-btn back-btn" onclick="flipCard(this)">عودة <i class="fa-solid fa-arrow-left"></i></button>
+                    </div>
+                </div>
+            </div>
+            <div class="product-card">
+                <div class="card-inner">
+                    <div class="card-front">
+                        <span class="product-tybe">سيروم</span>
+                        <img src="{% static 'image/niasinamid-cobiol.jpg' %}" style="width: 110px;" alt="">
+                        <h3>سيروم من كوبيول</h3>
+                        <p class="product-brief">سيروم منقي وموحد للون البشرة</p>
+                        <button class="flip-btn" onclick="flipCard(this)">المزيد <i class="fa-solid fa-rotate"></i></button>
+                    </div>
+                    <div class="card-back">
+                        <h3>المكونات والفوائد</h3>
+                        <ul class="product-details-list">
+                            <li><i class="fa-solid fa-check"></i>يساعد في التحكم بالإفرازات الدهنية.</li>
+                            <li><i class="fa-solid fa-check"></i>وتقبيض المسام.</li>
+                            <li><i class="fa-solid fa-check"></i>ترطيب وتنعيم البشرة.</li>
+                        </ul>
+                        <button class="flip-btn back-btn" onclick="flipCard(this)">عودة <i class="fa-solid fa-arrow-left"></i></button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="product-card">
+                <div class="card-inner">
+                    <div class="card-front">
+                        <span class="product-tybe">تونر بشرة</span>
+                        <img src="{% static 'image/anatolia-toner.jpg' %}" style="width: 110px;" alt="">
+                        <h3>تونر من اناتوليا</h3>
+                        <p class="product-brief">تونر ساليسيليك اسيد.</p>
+                        <button class="flip-btn" onclick="flipCard(this)">المزيد <i class="fa-solid fa-rotate"></i></button>
+                    </div>
+                    <div class="card-back">
+                        <h3>المكونات والفوائد</h3>
+                        <ul class="product-details-list">
+                            <li><i class="fa-solid fa-check"></i>مثالي لكل مشاكل البشرة: حبوب وجه, رؤووس سوداء, دهنية بشرة وفروة رأس.</li>
+                        </ul>
+                        <button class="flip-btn back-btn" onclick="flipCard(this)">عودة <i class="fa-solid fa-arrow-left"></i></button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="product-card">
+                <div class="card-inner">
+                    <div class="card-front">
+                        <span class="product-tybe">واقي شمس</span>
+                        <img src="{% static 'image/radins-sunscreen.jpg' %}" style="width: 110px;" alt="">
+                        <h3>واقي شمس رادينس</h3>
+                        <p class="product-brief">حماية فائقة من أشعة الشمس فوق البنفسجية بتركيبة خفيفة.</p>
+                        <button class="flip-btn" onclick="flipCard(this)">المزيد <i class="fa-solid fa-rotate"></i></button>
+                    </div>
+                    <div class="card-back">
+                        <h3>المكونات والفوائد</h3>
+                        <ul class="product-details-list">
+                            <li><i class="fa-solid fa-check"></i>حماية واسعة المدى: يقي البشرة من حروق الشمس والكلف.</li>
+                            <li><i class="fa-solid fa-check"></i>عناية إضافية: يحتوي على الغلوتاثيون للتفتيح, زيت الأركان للترطيب.</li>
+                            <li><i class="fa-solid fa-check"></i>ملمس خفيف: سريع الامتصاص, غير دهني, ولا يترك أثراً أبيض.</li>
+                        </ul>
+                        <button class="flip-btn back-btn" onclick="flipCard(this)">عودة <i class="fa-solid fa-arrow-left"></i></button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="product-card">
+                <div class="card-inner">
+                    <div class="card-front">
+                        <span class="product-tybe">سيروم مقشر</span>
+                        <img src="{% static 'image/cobiol-fruit-acid.jpg' %}" style="width:120px;" alt="">
+                        <h3>سيروم مقشر من كوبيول</h3>
+                        <p class="product-brief">سيروم مصمم ليمنح البشرة تقشيراً فعّالاً ويسعد على تجديد مظهرها.</p>
+                        <button class="flip-btn" onclick="flipCard(this)">المزيد <i class="fa-solid fa-rotate"></i></button>
+                    </div>
+                    <div class="card-back">
+                        <h3>المكونات والفوائد</h3>
+                        <ul class="product-details-list">
+                            <li><i class="fa-solid fa-check"></i>إزالة الخلايا الميتة.</li>
+                            <li><i class="fa-solid fa-check"></i>تحسين ملمس البشرة ومظهرها.</li>
+                            <li><i class="fa-solid fa-check"></i>تنظيف المسام من الشوائب المتراكمة.</li>
+                        </ul>
+                        <button class="flip-btn back-btn" onclick="flipCard(this)">عودة <i class="fa-solid fa-arrow-left"></i></button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="product-card">
+                <div class="card-inner">
+                    <div class="card-front">
+                        <span class="product-tybe">كريم حول العين</span>
+                        <img src="{% static 'image/vitaminc.jpg' %}" style="width:150px;" alt="">
+                        <h3>كريم فيتامين c من رادينس</h3>
+                        <p class="product-brief">لترطيب و تفتيح المنطقة حول العين.</p>
+                        <button class="flip-btn" onclick="flipCard(this)">المزيد <i class="fa-solid fa-rotate"></i></button>
+                    </div>
+                    <div class="card-back">
+                        <h3>المكونات والفوائد</h3>
+                        <ul class="product-details-list">
+                            <li><i class="fa-solid fa-check"></i>يحتوي على فيتامين c وحمض الهيالورونيك.</li>
+                            <li><i class="fa-solid fa-check"></i>يعالج الانتفاخ.</li>
+                            <li><i class="fa-solid fa-check"></i>يعالج الهالات السوداء.</li>
+                        </ul>
+                        <button class="flip-btn back-btn" onclick="flipCard(this)">عودة <i class="fa-solid fa-arrow-left"></i></button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="product-card">
+                <div class="card-inner">
+                    <div class="card-front">
+                        <span class="product-tybe">سيروم بشرة</span>
+                        <img src="{% static 'image/cobiol-probiotic.jpg' %}" style="width:180px;" alt="">
+                        <h3>سيروم البروبيوتك + الباكشيول من كوبيول</h3>
+                        <p class="product-brief">عناية فعّالة ونعومة بدون تهيج.</p>
+                        <button class="flip-btn" onclick="flipCard(this)">المزيد <i class="fa-solid fa-rotate"></i></button>
+                    </div>
+                    <div class="card-back">
+                        <h3>المكونات والفوائد</h3>
+                        <ul class="product-details-list">
+                            <li><i class="fa-solid fa-check"></i>تحسين ملمس البشرة.</li>
+                            <li><i class="fa-solid fa-check"></i>تعزيز النضارة</li>
+                            <li><i class="fa-solid fa-check"></i>شد البشرة ودعم المرونة</li>
+                        </ul>
+                        <button class="flip-btn back-btn" onclick="flipCard(this)">عودة <i class="fa-solid fa-arrow-left"></i></button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="product-card">
+                <div class="card-inner">
+                    <div class="card-front">
+                        <span class="product-tybe">مرطب يدين</span>
+                        <img src="{% static 'image/biogar-cream.jpg' %}" style="width:130px;" alt="">
+                        <h3>مرطبات اليدين هاند كير من بيوغار</h3>
+                        <p class="product-brief">نعومة فورية باستخدام واحد من كريمات هاند كير المغذي.</p>
+                        <button class="flip-btn" onclick="flipCard(this)">المزيد <i class="fa-solid fa-rotate"></i></button>
+                    </div>
+                    <div class="card-back">
+                        <h3>المكونات والفوائد</h3>
+                        <ul class="product-details-list">
+                            <li><i class="fa-solid fa-check"></i>تحسين ملمس اليدين.</li>
+                            <li><i class="fa-solid fa-check"></i>متوفر بالورد الدمشقي و زيت اللوز الحلو و زبدة الكاكاو.</li>
+                        </ul>
+                        <button class="flip-btn back-btn" onclick="flipCard(this)">عودة <i class="fa-solid fa-arrow-left"></i></button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="product-card">
+                <div class="card-inner">
+                    <div class="card-front">
+                        <span class="product-tybe">مرطب بشرة</span>
+                        <img src="{% static 'image/radins-cold-cream.jpg' %}" style="width:170px;" alt="">
+                        <h3>مرطب كولد كريم من رادينس</h3>
+                        <p class="product-brief">يرطب ويحمي البشرة ويعالج التهيج</p>
+                        <button class="flip-btn" onclick="flipCard(this)">المزيد <i class="fa-solid fa-rotate"></i></button>
+                    </div>
+                    <div class="card-back">
+                        <h3>المكونات والفوائد</h3>
+                        <ul class="product-details-list">
+                            <li><i class="fa-solid fa-check"></i>تركيبة فعّالة من زهرة الربيع والأوميغا 3.</li>
+                            <li><i class="fa-solid fa-check"></i>البانثينول (فيتامين B): يعمل كمرطب ومرمم معاً.</li>
+                        </ul>
+                        <button class="flip-btn back-btn" onclick="flipCard(this)">عودة <i class="fa-solid fa-arrow-left"></i></button>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <!-- end products-grid section -->
+
+    <!-- start footer section -->
+    <footer>
+        <div class="container">
+            <p class="footer-text">جميع الحقوق محفوظة &copy; 2026 العناية الذكية بالبشرة</p>
+        </div>
+    </footer>
+    <!-- end footer section -->
+
+    <script src="{% static 'chat.js' %}"></script>
+</body>
+
+</html>
