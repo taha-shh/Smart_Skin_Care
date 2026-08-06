@@ -10,12 +10,15 @@ from django.contrib import messages
 from django.http import JsonResponse
 import markdown
 
-CHATBOT_API_KEY = os.getenv('GOOGLE_API_KEY') or os.getenv('CHATBOT_API_KEY')
-genai.configure(api_key=CHATBOT_API_KEY)
-
 def skin_chat_bot(request, session_id=None):
+    api_key = os.getenv('GOOGLE_API_KEY') or os.getenv('CHATBOT_API_KEY')
+    if api_key:
+        genai.configure(api_key=api_key.strip())
+
     if session_id:
-        chat_session = get_object_or_404(ChatSession, id=session_id)
+        chat_session = ChatSession.objects.filter(id=session_id).first()
+        if not chat_session:
+            return redirect('skin_chat_new')
     elif request.user.is_authenticated:
         chat_session = ChatSession.objects.filter(user=request.user).order_by('-created_at').first()
         if not chat_session:
@@ -23,11 +26,8 @@ def skin_chat_bot(request, session_id=None):
     else:
         guest_session_id = request.session.get('guest_session_id')
         if guest_session_id:
-            try:
-                chat_session = ChatSession.objects.filter(id=session_id).first()
-                if not chat_session:
-                 return redirect('skin_chat_new')
-            except ChatSession.DoesNotExist:
+            chat_session = ChatSession.objects.filter(id=guest_session_id).first()
+            if not chat_session:
                 chat_session = ChatSession.objects.create(user=None)
                 request.session['guest_session_id'] = chat_session.id
         else:
@@ -73,7 +73,7 @@ def skin_chat_bot(request, session_id=None):
                 ChatMessage.objects.create(
                     session=chat_session,
                     sender='ai',
-                    text_content=  formatted_response
+                    text_content=formatted_response
                 )
 
             except Exception as e:
