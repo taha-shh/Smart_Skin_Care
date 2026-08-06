@@ -130,7 +130,7 @@ def about_page(request):
     return render(request, 'Aboutus.html')
 
 def products_page(request):
-    return render(request, 'Localproducts.html')
+    return render(request, 'LocalProducts.html')
 
 def upload_skin_image(request):
     return render(request, 'upload_image.html')
