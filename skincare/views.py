@@ -10,7 +10,7 @@ from django.contrib import messages
 from django.http import JsonResponse
 import markdown
 
-CHATBOT_API_KEY = os.getenv('CHATBOT_API_KEY')
+CHATBOT_API_KEY = os.getenv('GOOGLE_API_KEY') or os.getenv('CHATBOT_API_KEY')
 genai.configure(api_key=CHATBOT_API_KEY)
 
 def skin_chat_bot(request, session_id=None):
