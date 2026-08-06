@@ -24,7 +24,9 @@ def skin_chat_bot(request, session_id=None):
         guest_session_id = request.session.get('guest_session_id')
         if guest_session_id:
             try:
-                chat_session = ChatSession.objects.get(id=guest_session_id)
+                chat_session = ChatSession.objects.filter(id=session_id).first()
+                if not chat_session:
+                 return redirect('skin_chat_new')
             except ChatSession.DoesNotExist:
                 chat_session = ChatSession.objects.create(user=None)
                 request.session['guest_session_id'] = chat_session.id
