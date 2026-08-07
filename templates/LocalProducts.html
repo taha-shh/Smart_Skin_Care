@@ -15,32 +15,69 @@
 <body>
 
     <!-- start header section -->
-    <header>
-        <div class="container">
-            <a href="#">
-                <img class="logo" src="{% static 'image/logo.jpg' %}" alt="logo">
-            </a>
-            <nav class="nav-bar">
-                <ul>
-                    <li><a href="{% url 'home' %}" target="_blank">الرئيسية</a></li>
-                    <li><a href="{% url 'about' %}" target="_blank">من نحن؟</a></li>
-                    {% if latest_session_id %}
-                    <li><a href="{% url 'skin_chat_session' session_id=latest_session_id %}" target="_blank">إبدأ فحصك</a></li>
-                    {% else %}
-                    <li><a href="{% url 'skin_chat_new' %}" target="_blank">إبدأ فحصك</a></li>
-                    {% endif %}
-                    <li><a href="{% url 'products' %}" target="_blank">المنتجات المحلية</a></li>
-                    <li><a href="{% url 'login' %}" target="_blank" class="nav-login-btn">تسجيل الدخول</a></li>
-                </ul>
-            </nav>
-            <div class="social">
-                <i class="fa-brands fa-facebook"></i>
-                <i class="fa-brands fa-instagram"></i>
-                <i class="fa-brands fa-youtube"></i>
-                <i class="fa-brands fa-whatsapp"></i>
+   <header>
+    <div class="container">
+      <div class="logo-area">
+        <a href="#">
+          <img class="logo" src="{% static 'image/logo.jpg' %}" alt="logo">
+        </a>
+        
+        <div class="accessibility-dropdown">
+          <button type="button" class="acc-btn" id="acc-dropdown-toggle" title="إمكانية الوصول">
+            <i class="fa-solid fa-universal-access"></i>
+          </button>
+          
+          <div class="acc-menu" id="acc-menu">
+            <span class="acc-menu-title">أدوات إمكانية الوصول</span>
+            <div class="acc-buttons">
+              <button type="button" id="btn-increase-font" title="تكبير الخط">A+</button>
+              <button type="button" id="btn-reset-font" title="إعادة ضبط">A</button>
+              <button type="button" id="btn-decrease-font" title="تصغير الخط">A-</button>
             </div>
+            <button type="button" id="btn-toggle-contrast" class="contrast-btn">
+              👁 وضع التباين العالي
+            </button>
+          </div>
         </div>
-    </header>
+      </div>
+
+      <button type="button" class="menu-toggle" id="menu-toggle" aria-label="Toggle Navigation">☰</button>
+
+      <nav class="nav-bar" id="nav-menu">
+        <ul>
+          <li><a href="{% url 'home' %}" target="_blank">الرئيسية</a></li>
+          <li><a href="{% url 'about' %}" target="_blank">من نحن؟</a></li>
+          {% if latest_session_id %}
+            <li><a href="{% url 'skin_chat_session' session_id=latest_session_id %}" target="_blank">إبدأ فحصك</a></li>
+          {% else %}
+            <li><a href="{% url 'skin_chat_new' %}" target="_blank">إبدأ فحصك</a></li>
+          {% endif %}
+          <li><a href="{% url 'products' %}" target="_blank">المنتجات المحلية</a></li>
+          
+          {% if user.is_authenticated %}
+            <li class="user-dropdown">
+              <button type="button" class="user-btn" id="user-dropdown-btn">
+                <span>{{ user.username }}</span>
+                <i class="fa-solid fa-chevron-down" style="font-size: 12px;"></i>
+              </button>
+              <div id="userDropdownMenu" class="dropdown-content">
+                <a href="#" id="logout-link">تسجيل الخروج</a>
+              </div>
+            </li>
+          {% else %}
+            <li><a href="{% url 'login' %}" target="_blank" class="nav-login-btn">تسجيل الدخول</a></li>
+          {% endif %}
+        </ul>
+      </nav>
+
+      <div class="social">
+        <i class="fa-brands fa-facebook"></i>
+        <i class="fa-brands fa-instagram"></i>
+        <i class="fa-brands fa-youtube"></i>
+        <i class="fa-brands fa-whatsapp"></i>
+      </div>
+    </div>
+  </header>
     <!-- End header section -->
 
     <!-- start products-grid section -->

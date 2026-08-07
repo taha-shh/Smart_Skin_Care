@@ -135,3 +135,54 @@ function filterProducts() {
         noResultsMsg.remove();
     }
 }
+
+document.addEventListener('DOMContentLoaded', function () {
+    const userBtn = document.getElementById('user-dropdown-btn');
+    const dropdownMenu = document.getElementById('userDropdownMenu');
+    const logoutLink = document.getElementById('logout-link');
+    const logoutForm = document.getElementById('logout-form');
+
+    if (userBtn && dropdownMenu) {
+        userBtn.addEventListener('click', function (e) {
+            e.stopPropagation();
+            dropdownMenu.classList.toggle('show-dropdown');
+        });
+
+        document.addEventListener('click', function (e) {
+            if (!dropdownMenu.contains(e.target) && e.target !== userBtn) {
+                dropdownMenu.classList.remove('show-dropdown');
+            }
+        });
+    }
+
+    if (logoutLink && logoutForm) {
+        logoutLink.addEventListener('click', function (e) {
+            e.preventDefault();
+            const confirmAction = confirm('هل أنت متأكد من أنك تريد تسجيل الخروج؟');
+            if (confirmAction) {
+                logoutForm.submit();
+            }
+        });
+    }
+});
+
+const menuToggle = document.getElementById('menu-toggle');
+const navMenu = document.getElementById('nav-menu');
+
+menuToggle.addEventListener('click', () => {
+    navMenu.classList.toggle('active');
+});
+
+const userBtn = document.getElementById('user-dropdown-btn');
+const userMenu = document.getElementById('userDropdownMenu');
+
+if (userBtn && userMenu) {
+    userBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        userMenu.classList.toggle('show');
+    });
+
+    document.addEventListener('click', () => {
+        userMenu.classList.remove('show');
+    });
+}

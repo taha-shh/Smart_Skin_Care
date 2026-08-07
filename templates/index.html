@@ -34,13 +34,15 @@
               <button type="button" id="btn-decrease-font" title="تصغير الخط">A-</button>
             </div>
             <button type="button" id="btn-toggle-contrast" class="contrast-btn">
-              👁️ وضع التباين العالي
+              👁 وضع التباين العالي
             </button>
           </div>
         </div>
       </div>
 
-      <nav class="nav-bar">
+      <button type="button" class="menu-toggle" id="menu-toggle" aria-label="Toggle Navigation">☰</button>
+
+      <nav class="nav-bar" id="nav-menu">
         <ul>
           <li><a href="{% url 'home' %}" target="_blank">الرئيسية</a></li>
           <li><a href="{% url 'about' %}" target="_blank">من نحن؟</a></li>
@@ -50,7 +52,20 @@
             <li><a href="{% url 'skin_chat_new' %}" target="_blank">إبدأ فحصك</a></li>
           {% endif %}
           <li><a href="{% url 'products' %}" target="_blank">المنتجات المحلية</a></li>
-          <li><a href="{% url 'login' %}" target="_blank" class="nav-login-btn">تسجيل الدخول</a></li>
+          
+          {% if user.is_authenticated %}
+            <li class="user-dropdown">
+              <button type="button" class="user-btn" id="user-dropdown-btn">
+                <span>{{ user.username }}</span>
+                <i class="fa-solid fa-chevron-down" style="font-size: 12px;"></i>
+              </button>
+              <div id="userDropdownMenu" class="dropdown-content">
+                <a href="#" id="logout-link">تسجيل الخروج</a>
+              </div>
+            </li>
+          {% else %}
+            <li><a href="{% url 'login' %}" target="_blank" class="nav-login-btn">تسجيل الدخول</a></li>
+          {% endif %}
         </ul>
       </nav>
 
@@ -62,6 +77,10 @@
       </div>
     </div>
   </header>
+
+  <form id="logout-form" action="{% url 'logout' %}" method="POST" class="hidden-form">
+    {% csrf_token %}
+  </form>
 
   <section class="hero">
     <div class="container">
@@ -83,7 +102,6 @@
       </div>
     </div>
   </section>
-
   <section class="services">
     <div class="container">
       <h2 class="section-title">خدماتنا الاحترافية</h2>
@@ -92,21 +110,21 @@
       </p>
       <div class="all-services">
         <div class="service">
-          <img src="{% static 'image/online-analysis.jpg' %}" alt="img" style="width: 100px;">
+          <img src="{% static 'image/online-analysis.jpg' %}" alt="img" class="service-img-sm">
           <h3>تقديم استشارات سريعة</h3>
           <p>
             نقدم استشارات مجانية وسريعة للتعويض عن الاستشارات الباهظة الثمن من العيادات والأطباء
-            </p>
+          </p>
         </div>
         <div class="service">
-          <img src="{% static 'image/local-product.jpg' %}" alt="img" style="width: 150px;">
+          <img src="{% static 'image/local-product.jpg' %}" alt="img" class="service-img-md">
           <h3>ترشيح المنتجات المحلية</h3>
           <p>
             نرشح لكم المنتجات المحلية المفيدة لكل حالة لسهولة الوصول اليها
           </p>
         </div>
         <div class="service">
-          <img src="{% static 'image/skin-tybe.jpg' %}" alt="img" style="width: 150px;">
+          <img src="{% static 'image/skin-tybe.jpg' %}" alt="img" class="service-img-md">
           <h3>تعرفي على نوع بشرتك</h3>
           <p>
             دليل فهم البشرة ونوعها والمنتجات المناسبة لها
