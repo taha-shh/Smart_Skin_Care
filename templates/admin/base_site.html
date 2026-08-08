@@ -1,0 +1,38 @@
+{% extends "admin/base.html" %}
+{% load static %}
+
+{% block welcome-msg %}{% endblock %}
+{% block userlinks %}
+    {% if site_url %}
+        <a href="{{ site_url }}" class="admin-top-btn">عرض الموقع</a>
+    {% endif %}
+
+    {% if user.has_usable_password %}
+        <a href="{% url 'admin:password_change' %}" class="admin-top-btn">غيّر كلمة المرور</a>
+    {% endif %}
+
+   
+    <div class="admin-user-dropdown">
+        <button type="button" class="admin-top-btn admin-user-toggle" onclick="toggleAdminDropdown(event)">
+            {{ user.get_short_name|default:user.get_username }}
+            <span style="font-size: 10px; margin-right: 4px;">▼</span>
+        </button>
+        
+        <div class="admin-dropdown-content" id="adminDropdownMenu">
+            <form method="post" action="{% url 'admin:logout' %}">
+                {% csrf_token %}
+                <button type="submit" class="admin-logout-btn">تسجيل الخروج</button>
+            </form>
+        </div>
+    </div>
+{% endblock %}
+
+{% block extrahead %}
+    {{ block.super }}
+    <link rel="stylesheet" type="text/css" href="{% static 'style.css' %}">
+    <script src="{% static 'chat.js' %}" defer></script>
+{% endblock %}
+
+
+    {{ block.super }}
+

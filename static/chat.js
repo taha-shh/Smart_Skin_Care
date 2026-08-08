@@ -186,3 +186,17 @@ if (userBtn && userMenu) {
         userMenu.classList.remove('show');
     });
 }
+
+function toggleAdminDropdown(event) {
+            event.stopPropagation();
+            var menu = document.getElementById('adminDropdownMenu');
+            menu.classList.toggle('show');
+        }
+
+       
+        document.addEventListener('click', function(event) {
+            var menu = document.getElementById('adminDropdownMenu');
+            if (menu && menu.classList.contains('show')) {
+                menu.classList.remove('show');
+            }
+        });

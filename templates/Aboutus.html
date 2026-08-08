@@ -66,6 +66,15 @@
           {% else %}
             <li><a href="{% url 'login' %}" target="_blank" class="nav-login-btn">تسجيل الدخول</a></li>
           {% endif %}
+
+          
+                  {% if user.is_authenticated and user.is_staff %}
+  <li class="nav-item">
+    <a class="nav-link admin-btn" href="{% url 'admin:index' %}" target="_blank">
+      <i class="fa-solid fa-user-shield"></i> لوحة التحكم
+    </a>
+  </li>
+{% endif %}
         </ul>
       </nav>
 

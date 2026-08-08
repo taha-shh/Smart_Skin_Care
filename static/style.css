@@ -1299,10 +1299,13 @@ footer .footer-text {
 }
 
 
+/* ==========================================
+   Start Skin_chat Page 
+   ========================================== */
 
 body.chat-page {
     background-color: #fcf9f6;
-    background-image:  url('/static/image/pattern.jpg');
+    background-image: url('/static/image/pattern.jpg');
     background-repeat: repeat;
     background-position: center;
     color: #2c3e50;
@@ -1311,6 +1314,7 @@ body.chat-page {
     align-items: center;
     min-height: 100vh;
     padding: 20px;
+    box-sizing: border-box;
 }
 
 .chat-container {
@@ -1406,23 +1410,27 @@ body.chat-page {
 }
 
 .chat-form {
-    padding: 16px 20px;
+    padding: 12px 16px;
     background: #ffffff;
     border-top: 1px solid #dbb5b5;
     display: flex;
-    gap: 12px;
+    gap: 8px;
     align-items: center;
+    width: 100%;
+    box-sizing: border-box;
 }
 
 .input-group {
     flex: 1;
+    min-width: 0;
     display: flex;
     align-items: center;
     background: #fdfaf7;
     border-radius: 14px;
-    padding: 4px 12px;
+    padding: 4px 8px;
     border: 1px solid #dbb5b5;
     transition: border-color 0.2s;
+    gap: 6px;
 }
 
 .input-group:focus-within {
@@ -1432,9 +1440,10 @@ body.chat-page {
 
 .input-group input[type="text"] {
     flex: 1;
+    min-width: 0;
     border: none;
     background: transparent;
-    padding: 10px;
+    padding: 8px 4px;
     font-size: 0.95rem;
     outline: none;
     color: #334155;
@@ -1442,12 +1451,17 @@ body.chat-page {
 
 .file-label {
     cursor: pointer;
-    padding: 8px 12px;
+    padding: 6px 10px;
     background: #f1e5d1;
     border-radius: 10px;
     font-size: 0.85rem;
     color: #611e29;
     transition: background 0.2s;
+    flex-shrink: 0;
+    white-space: nowrap;
+    display: flex;
+    align-items: center;
+    gap: 4px;
 }
 
 .file-label:hover {
@@ -1462,12 +1476,14 @@ body.chat-page {
     background: #611e29;
     color: white;
     border: none;
-    padding: 12px 24px;
+    padding: 10px 18px;
     border-radius: 14px;
     font-size: 0.95rem;
     font-weight: 700;
     cursor: pointer;
     transition: all 0.2s;
+    flex-shrink: 0;
+    white-space: nowrap;
 }
 
 .send-btn:hover {
@@ -1475,3 +1491,162 @@ body.chat-page {
     transform: translateY(-1px);
 }
 
+@media (max-width: 768px) {
+    body.chat-page {
+        padding: 0;
+    }
+
+    .chat-container {
+        height: 100vh;
+        border-radius: 0;
+        border: none;
+    }
+
+    .message {
+        max-width: 85%;
+    }
+}
+
+@media (max-width: 480px) {
+    .chat-form {
+        padding: 8px 10px;
+        gap: 6px;
+    }
+
+    .input-group {
+        padding: 2px 6px;
+    }
+
+    .input-group input[type="text"] {
+        font-size: 0.88rem;
+        padding: 6px 2px;
+    }
+    .file-label {
+        padding: 6px 8px;
+        font-size: 0.8rem;
+    }
+
+    .send-btn {
+        padding: 8px 12px;
+        font-size: 0.88rem;
+        border-radius: 12px;
+    }
+
+    .chat-messages {
+        padding: 12px;
+    }
+}
+
+/* ==========================================
+   End Skin_chat Page 
+   ========================================== */
+.admin-btn {
+    background-color: transparent !important;
+    color: inherit !important;
+    padding: initial !important;
+    border-radius: initial !important;
+    font-weight: bold !important;
+    text-decoration: none !important;
+    font-size: 14px !important;
+    transition: background-color 0.2s ease !important;
+    box-shadow: none !important;
+}
+
+.admin-btn:hover {
+    background-color:   var(--secondary-color) !important;
+    color:  var(--text-color) !important;
+}
+
+/* ==========================================
+   Start Admin Page 
+   ========================================== */
+#user-tools {
+            display: flex !important;
+            align-items: center !important;
+            gap: 10px !important;
+            font-size: 0.9rem !important;
+            direction: rtl !important;
+            position: relative !important;
+        }
+
+       
+        .admin-top-btn {
+            display: inline-flex !important;
+            align-items: center !important;
+            padding: 6px 14px !important;
+            background-color: rgba(255, 255, 255, 0.2) !important;
+            color: #ffffff !important;
+            text-decoration: none !important;
+            border-radius: 8px !important;
+            font-weight: 600 !important;
+            font-size: 0.9rem !important;
+            font-family: inherit !important;
+            transition: all 0.2s ease-in-out !important;
+            border: 1px solid rgba(255, 255, 255, 0.3) !important;
+            cursor: pointer !important;
+        }
+
+        
+        .admin-top-btn:hover {
+            background-color: #ffffff !important;
+            color: #334155 !important;
+            transform: translateY(-2px) !important;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15) !important;
+        }
+
+       
+        .admin-user-dropdown {
+            position: relative !important;
+            display: inline-block !important;
+        }
+
+        .admin-dropdown-content {
+            display: none; 
+            position: absolute !important;
+            top: 115% !important;
+            right: 0 !important;
+            background-color: #ffffff !important;
+            min-width: 150px !important;
+            box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2) !important;
+            border-radius: 8px !important;
+            overflow: hidden !important;
+            z-index: 9999 !important;
+            border: 1px solid rgba(0, 0, 0, 0.1) !important;
+            padding: 4px 0 !important;
+        }
+
+        .admin-dropdown-content.show {
+            display: block !important;
+        }
+
+       
+        .admin-logout-btn {
+            width: 100% !important;
+            background: none !important;
+            border: none !important;
+            color: #334155 !important;
+            padding: 8px 16px !important;
+            text-align: right !important;
+            font-size: 0.88rem !important;
+            font-weight: 600 !important;
+            cursor: pointer !important;
+            transition: background 0.2s ease, color 0.2s ease, transform 0.2s ease !important;
+            font-family: inherit !important;
+        }
+
+        .admin-logout-btn:hover {
+            background-color:  #334155  !important;
+            color: #ffffff !important;
+        }
+
+        footer {
+    
+           padding:0;
+        }
+
+
+        
+
+        /* ==========================================
+             End Admin Page 
+         ========================================== */
