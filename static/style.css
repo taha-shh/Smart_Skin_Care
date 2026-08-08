@@ -182,9 +182,6 @@ header .container nav ul li a:hover {
     background-color: var(--secondary-color);
 }
 
-/* ==========================================
-   Dropdown Menu Styles (Simplified & Fixed)
-   ========================================== */
 
 .nav-bar ul li.dropdown {
     position: relative;
@@ -257,9 +254,7 @@ header .container nav ul li a:hover {
     }
 }
 
-/* ==========================================
-   Social Icons & Accessibility
-   ========================================== */
+
 
 header .container .social {
     display: flex;
@@ -413,9 +408,7 @@ html.high-contrast .accessibility-dropdown {
     width: 150px;
 }
 
-/* ==========================================
-   Hero Style
-   ========================================== */
+
 
 .hero {
     display: flex;
@@ -479,9 +472,7 @@ html.high-contrast .accessibility-dropdown {
     transform: scale(1.05);
 }
 
-/* ==========================================
-   Services Style
-   ========================================== */
+
 
 .services {
     min-height: 550px;
@@ -571,9 +562,7 @@ html.high-contrast .accessibility-dropdown {
     line-height: 1.5;
 }
 
-/* ==========================================
-   Footer Style
-   ========================================== */
+
 
 footer {
     background-color: var(--fourthly-color);
@@ -599,7 +588,7 @@ footer .footer-text {
 }
 
 /* ==========================================
-   AboutUs, Login, Register & Products
+            Start AboutUs Page
    ========================================== */
 
 .about-intro {
@@ -642,331 +631,380 @@ footer .footer-text {
     margin-bottom: 20px;
 }
 
+/* ==========================================
+            Start AboutUs Page
+   ========================================== */
+
+   /* ==========================================
+            Start Login Page
+   ========================================== */
+
+
 .login-body {
-    background-color: var(--primary-color);
-    min-height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 20px;
+    background-color: #d8cfc4 !important;
+    min-height: 100vh !important;
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+    margin: 0 !important;
+    padding: 30px 0 !important;
+    font-family: inherit !important;
 }
 
 .login-container {
-    width: 100%;
-    display: flex;
-    justify-content: center;
+    width: 100% !important;
+    display: flex !important;
+    justify-content: center !important;
+    padding: 0 15px !important;
 }
 
 .login-card {
-    background-color: var(--white);
-    width: 100%;
-    max-width: 420px;
-    padding: 40px 30px;
-    border-radius: 12px;
-    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.05);
-    direction: rtl;
-    text-align: right;
+    background-color: #ffffff !important;
+    width: 100% !important;
+    max-width: 420px !important;
+    padding: 40px 35px !important;
+    border-radius: 16px !important;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03) !important;
+    direction: rtl !important;
+    text-align: right !important;
+    border: none !important;
 }
 
 .login-header h2 {
-    color: var(--fourthly-color);
-    font-size: 28px;
-    margin-bottom: 8px;
-    text-align: center;
+    color: #3b2826 !important;
+    font-size: 26px !important;
+    margin: 0 0 8px 0 !important;
+    text-align: center !important;
+    font-weight: bold !important;
 }
 
 .login-header p {
-    color: var(--text-color);
-    font-size: 15px;
-    margin-bottom: 30px;
-    text-align: center;
+    color: #4a4a4a !important;
+    font-size: 13px !important;
+    margin: 0 0 25px 0 !important;
+    text-align: center !important;
 }
 
 .login-form .input-group {
-    margin-bottom: 20px;
+    background: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+    padding: 0 !important;
+    margin-bottom: 20px !important;
+    width: 100% !important;
+    display: block !important;
 }
 
 .login-form .input-group label {
-    display: block;
-    font-size: 15px;
-    font-weight: bold;
-    color: var(--text-color);
-    margin-bottom: 8px;
+    display: block !important;
+    text-align: right !important;
+    font-size: 14px !important;
+    font-weight: bold !important;
+    color: #3b2826 !important;
+    margin-bottom: 8px !important;
+    padding-right: 2px !important;
 }
 
 .login-form .input-wrapper {
-    position: relative;
-    display: flex;
-    align-items: center;
+    position: relative !important;
+    width: 100% !important;
+    height: 48px !important;
+    background-color: #f2eeea !important;
+    border: 1.5px solid #c8bebd !important;
+    border-radius: 8px !important;
+    display: flex !important;
+    align-items: center !important;
+    box-sizing: border-box !important;
+    box-shadow: none !important;
 }
 
 .login-form .input-wrapper i {
-    position: absolute;
-    right: 15px;
-    color: var(--fourthly-color);
-    font-size: 16px;
+    position: absolute !important;
+    right: 15px !important;
+    left: auto !important;
+    color: #5c3a36 !important;
+    font-size: 16px !important;
+    pointer-events: none !important;
+    z-index: 2 !important;
 }
 
 .login-form .input-wrapper input {
-    width: 100%;
-    padding: 12px 45px 12px 15px;
-    border: 1.5px solid var(--secondary-color);
-    border-radius: 6px;
-    font-size: 15px;
-    transition: var(--transition);
-    background-color: #fbf9f6;
+    width: 100% !important;
+    height: 100% !important;
+    background: transparent !important;
+    border: none !important;
+    outline: none !important;
+    box-shadow: none !important;
+    direction: rtl !important;
+    text-align: right !important;
+    padding-right: 45px !important;
+    padding-left: 15px !important;
+    font-size: 14px !important;
+    color: #333333 !important;
 }
 
-.login-form .btn-login {
-    width: 100%;
-    background-color: var(--fourthly-color);
-    color: var(--white);
-    padding: 14px;
-    border: none;
-    border-radius: 6px;
-    font-size: 16px;
-    font-weight: bold;
-    cursor: pointer;
-    transition: var(--transition);
+.login-form .input-wrapper input::placeholder {
+    text-align: right !important;
+    direction: rtl !important;
+    color: #8c8c8c !important;
+    opacity: 1 !important;
 }
 
-.btn-back-home {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 8px;
-    width: 100%;
-    padding: 14px;
-    margin-top: 10px;
-    background-color: var(--fourthly-color);
-    color: var(--white);
-    text-decoration: none;
-    border-radius: 6px;
-    font-size: 16px;
-    font-weight: bold;
-    transition: var(--transition);
-    border: none;
-    box-sizing: border-box;
-    cursor: pointer;
+.login-form .btn-login,
+.login-form .btn-back-home {
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+    width: 100% !important;
+    height: 48px !important;
+    background-color: #5c3a36 !important;
+    color: #ffffff !important;
+    border: none !important;
+    border-radius: 8px !important;
+    font-size: 16px !important;
+    font-weight: bold !important;
+    cursor: pointer !important;
+    margin-top: 12px !important;
+    text-decoration: none !important;
+    box-sizing: border-box !important;
+    transition: background-color 0.2s ease !important;
 }
 
-.btn-back-home:hover {
-    background-color: var(--thirtly-color);
-    transform: translateY(-2px);
-}
-
-.btn-guest {
-    display: block;
-    text-align: center;
-    margin-top: 10px;
-    padding: 10px;
-    background-color: #7f8c8d;
-    color: white;
-    border-radius: 6px;
-    text-decoration: none;
-    font-weight: bold;
-}
-
-.login-form .btn-login:hover {
-    background-color: var(--thirtly-color);
-    transform: translateY(-2px);
+.login-form .btn-login:hover,
+.login-form .btn-back-home:hover {
+    background-color: #422926 !important;
 }
 
 .login-footer {
-    margin-top: 25px;
-    text-align: center;
-    font-size: 14px;
-    color: var(--text-color);
+    margin-top: 20px !important;
+    text-align: center !important;
+    font-size: 13px !important;
+    color: #555555 !important;
 }
 
 .login-footer a {
-    color: var(--fourthly-color);
-    text-decoration: none;
-    font-weight: bold;
+    color: #5c3a36 !important;
+    text-decoration: none !important;
+    font-weight: bold !important;
 }
 
 .login-footer a:hover {
-    text-decoration: underline;
+    text-decoration: underline !important;
 }
+/* ==========================================
+   End Login Page 
+   ========================================== */
 
+
+/* ==========================================
+   Start Register Page 
+   ========================================== */
 .register-body {
-    background-color: #b6d9c99c;
+    background-color: #c3d9ce;
     min-height: 100vh;
     display: flex;
     align-items: center;
-    padding: 20px;
+    justify-content: center;
+    margin: 0;
+    padding: 30px 0;
+    font-family: inherit;
 }
 
 .register-container {
     width: 100%;
     display: flex;
     justify-content: center;
+    padding: 0 15px;
 }
 
 .register-card {
-    background-color: var(--white);
+    background-color: #ffffff;
     width: 100%;
     max-width: 440px;
-    padding: 40px 30px;
-    border-radius: 12px;
-    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.05);
+    padding: 40px 35px;
+    border-radius: 16px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03);
 }
 
 .register-header h2 {
-    color: #1d563b;
-    font-size: 28px;
-    margin-bottom: 8px;
+    color: #1a4d36;
+    font-size: 26px;
+    margin: 0 0 8px 0;
     text-align: center;
+    font-weight: bold;
 }
 
 .register-header p {
-    color: var(--text-color);
-    font-size: 14px;
-    margin-bottom: 30px;
+    color: #4a4a4a;
+    font-size: 13px;
+    margin: 0 0 25px 0;
     text-align: center;
 }
 
 .register-form .input-group {
-    margin-bottom: 20px;
+    border: none !important;
+    background: transparent !important;
+    padding: 0 !important;
+    margin-bottom: 20px !important;
+    box-shadow: none !important;
+    display: block !important;
+    width: 100%;
 }
 
 .register-form .input-group label {
-    display: block;
-    font-size: 15px;
-    font-weight: bold;
-    color: var(--text-color);
-    margin-bottom: 8px;
+    display: block !important;
+    text-align: right !important;
+    font-size: 14px !important;
+    font-weight: bold !important;
+    color: #1a4d36 !important;
+    margin-bottom: 8px !important;
+    padding-right: 2px !important;
+}
+
+.register-form .gender-group label {
+    text-align: center !important;
 }
 
 .register-form .input-wrapper {
-    position: relative;
-    display: flex;
-    align-items: center;
-}
-
-.register-form .input-wrapper i {
-    position: absolute;
-    right: 15px;
-    color: #2d6a4f;
-    font-size: 16px;
+    position: relative !important;
+    width: 100% !important;
+    height: 48px !important;
+    border: 1.5px solid #a3c4b5 !important;
+    border-radius: 8px !important;
+    background-color: #eaf3ee !important;
+    display: flex !important;
+    align-items: center !important;
+    box-shadow: none !important;
+    box-sizing: border-box !important;
 }
 
 .register-form .input-wrapper input {
-    width: 100%;
-    padding: 12px 45px 12px 15px;
-    border: 1.5px solid #5cc294;
-    border-radius: 6px;
-    font-size: 15px;
-    outline: none;
-    transition: var(--transition);
-    background-color: #c9efde58;
-    color: var(--text-color);
+    width: 100% !important;
+    height: 100% !important;
+    padding: 0 45px 0 15px !important;
+    border: none !important;
+    outline: none !important;
+    background: transparent !important;
+    text-align: right !important;
+    direction: rtl !important;
+    font-size: 14px !important;
+    color: #333333 !important;
+    box-shadow: none !important;
 }
 
-.register-form .input-wrapper input:focus {
-    border-color: #2d6a4f;
-    box-shadow: 0 0 5px rgba(45, 106, 79, 0.2);
-}
-
-.register-form .btn-register {
-    width: 100%;
-    background-color: #2d6a4f;
-    color: var(--white);
-    padding: 14px;
-    border: none;
-    border-radius: 6px;
-    font-size: 16px;
-    font-weight: bold;
-    cursor: pointer;
-    transition: var(--transition);
-    margin-top: 10px;
-}
-
-.register-form .btn-register:hover {
-    background-color: #40916c;
-    transform: translateY(-2px);
-}
-
-.register-footer {
-    margin-top: 25px;
-    text-align: center;
-    font-size: 14px;
-    color: var(--text-color);
-}
-
-.register-footer a {
-    color: #2d6a4f;
-    text-decoration: none;
-    font-weight: bold;
-}
-
-.register-footer a:hover {
-    text-decoration: underline;
-}
-
-.register-form .gender-group {
-    margin-bottom: 25px;
-    text-align: center;
+.register-form .input-wrapper i {
+    position: absolute !important;
+    right: 15px !important;
+    left: auto !important;
+    color: #1a4d36 !important;
+    font-size: 16px !important;
+    pointer-events: none !important;
 }
 
 .register-form .gender-options {
-    display: flex;
-    justify-content: center;
-    gap: 30px;
-    margin-top: 5px;
+    border: none !important;
+    background: transparent !important;
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+    gap: 30px !important;
+    padding: 5px 0 !important;
+    height: 42px !important;
 }
 
 .register-form .gender-radio {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    cursor: pointer;
-    font-size: 15px;
-    color: var(--text-color);
+    display: flex !important;
+    align-items: center !important;
+    gap: 6px !important;
+    cursor: pointer !important;
+    font-size: 14px !important;
+    color: #333333 !important;
 }
 
 .register-form .gender-radio input[type="radio"] {
-    position: absolute;
-    opacity: 0;
-    cursor: pointer;
+    position: absolute !important;
+    opacity: 0 !important;
 }
 
 .register-form .radio-custom {
-    height: 18px;
-    width: 18px;
-    background-color: #c9efde58;
-    border: 1.5px solid #2d6a4f;
-    border-radius: 50%;
-    display: inline-block;
-    position: relative;
-    transition: var(--transition);
+    height: 16px !important;
+    width: 16px !important;
+    background-color: #ffffff !important;
+    border: 1.5px solid #1a4d36 !important;
+    border-radius: 50% !important;
+    display: inline-block !important;
+    position: relative !important;
 }
 
-.register-form .gender-radio input:checked~.radio-custom {
-    background-color: #2d6a4f;
-    border-color: #2d6a4f;
+.register-form .gender-radio input:checked ~ .radio-custom {
+    background-color: #1a4d36 !important;
+    border-color: #1a4d36 !important;
 }
 
 .register-form .radio-custom::after {
-    content: "";
-    position: absolute;
-    display: none;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 6px;
-    height: 6px;
-    border-radius: 50%;
-    background: var(--white);
+    content: "" !important;
+    position: absolute !important;
+    display: none !important;
+    top: 50% !important;
+    left: 50% !important;
+    transform: translate(-50%, -50%) !important;
+    width: 6px !important;
+    height: 6px !important;
+    border-radius: 50% !important;
+    background: #ffffff !important;
 }
 
-.register-form .gender-radio input:checked~.radio-custom::after {
-    display: block;
+.register-form .gender-radio input:checked ~ .radio-custom::after {
+    display: block !important;
 }
 
 .register-form .gender-radio i {
-    color: #40916c;
+    color: #1a4d36 !important;
 }
+.register-form .btn-register {
+    display: block !important;
+    width: 100% !important;
+    height: 48px !important;
+    background-color: #1a4d36 !important;
+    color: #ffffff !important;
+    border: none !important;
+    border-radius: 8px !important;
+    font-size: 16px !important;
+    font-weight: bold !important;
+    cursor: pointer !important;
+    margin-top: 15px !important;
+    box-shadow: 0 4px 10px rgba(26, 77, 54, 0.2) !important;
+    transition: background-color 0.2s ease !important;
+}
+
+.register-form .btn-register:hover {
+    background-color: #123827 !important;
+}
+
+.register-footer {
+    margin-top: 18px !important;
+    text-align: center !important;
+    font-size: 13px !important;
+    color: #555555 !important;
+}
+
+.register-footer a {
+    color: #1a4d36 !important;
+    text-decoration: none !important;
+    font-weight: bold !important;
+}
+
+.register-footer a:hover {
+    text-decoration: underline !important;
+}
+
+/* ==========================================
+   End Register Page 
+   ========================================== */
+
+   /* ==========================================
+   Start Products Page 
+   ========================================== */
 
 .products-container {
     background-color: #dbb5b548;
@@ -1153,13 +1191,13 @@ footer .footer-text {
   font-size: 1.1rem;
   padding: 40px 0;
 }
-
 /* ==========================================
-   Hamburger Mobile Navigation Media Queries
+   End Product Page 
    ========================================== */
 
+
 @media (max-width: 850px) {
-    /* إظهار زِر القائمة في الجوال */
+    
     .menu-toggle {
         display: block;
     }
@@ -1179,13 +1217,13 @@ footer .footer-text {
         background-color: var(--primary-color);
         box-shadow: 0 10px 15px rgba(0,0,0,0.1);
         border-top: 1px solid var(--secondary-color);
-        display: none; /* مخفي افتراضياً */
+        display: none; 
         height: auto;
         transform: none;
         z-index: 999;
     }
 
-    /* إظهار القائمة عند الضغط على الزر عبر كلاس active */
+    
     header .container nav.active {
         display: block;
         animation: slideDown 0.3s ease;
@@ -1260,12 +1298,7 @@ footer .footer-text {
     }
 }
 
-* {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-    font-family: 'Tajawal', sans-serif;
-}
+
 
 body.chat-page {
     background-color: #fcf9f6;
@@ -1441,3 +1474,4 @@ body.chat-page {
     background: #4a161f;
     transform: translateY(-1px);
 }
+

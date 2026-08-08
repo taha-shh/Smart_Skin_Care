@@ -1,6 +1,6 @@
 {% load static %}
 <!DOCTYPE html>
-<html lang="ar">
+<html lang="ar" dir="rtl">
 
 <head>
     <meta charset="UTF-8">
@@ -22,40 +22,41 @@
                 <p>انضمي إلينا واكتشفي الروتين الأمثل لبشرتكِ</p>
             </div>
 
-             {% if messages %}
-    <div class="messages-container" style="width: 100%; max-width: 400px; margin: 0 auto;">
-        {% for message in messages %}
-            {% if message.tags == 'error' %}
-                <div style="padding: 12px; margin-bottom: 10px; color: white; border-radius: 6px; text-align: center; font-size: 14px; font-weight: bold; background-color: #e74c3c;">
-                    {{ message }}
-                </div>
-            {% else %}
-                <div style="padding: 12px; margin-bottom: 10px; color: white;  border-radius: 6px; text-align: center; font-weight: bold; font-size: 14px; background-color: #2ecc71;">
-                    {{ message }}
-                </div>
+            {% if messages %}
+            <div class="messages-container" style="width: 100%; max-width: 400px; margin: 0 auto;">
+                {% for message in messages %}
+                    {% if message.tags == 'error' %}
+                        <div style="padding: 12px; margin-bottom: 10px; color: white; border-radius: 6px; text-align: center; font-size: 14px; font-weight: bold; background-color: #e74c3c;">
+                            {{ message }}
+                        </div>
+                    {% else %}
+                        <div style="padding: 12px; margin-bottom: 10px; color: white; border-radius: 6px; text-align: center; font-weight: bold; font-size: 14px; background-color: #2ecc71;">
+                            {{ message }}
+                        </div>
+                    {% endif %}
+                {% endfor %}
+            </div>
             {% endif %}
-        {% endfor %}
-    </div>
-{% endif %}
-
 
             <form class="register-form" method="post" action="{% url 'register' %}" autocomplete="off">
                 {% csrf_token %}
+                
+                <!-- 1. الاسم الكامل -->
                 <div class="input-group">
                     <label for="username">الاسم الكامل (باللغة الإنكليزية)</label>
                     <div class="input-wrapper">
-                        <i class="fa-solid fa-user"></i>
                         <input type="text" name="username" id="username" placeholder="اسم المستخدم" required
                             pattern="[A-Za-z\s]+"
                             oninvalid="this.setCustomValidity('الرجاء إدخال اسمكِ باللغة الانكليزية فقط مع السماح بالمسافات')"
                             oninput="this.setCustomValidity('')">
+                        <i class="fa-solid fa-user"></i>
                     </div>
                 </div>
 
+                <!-- 2. الجنس -->
                 <div class="input-group gender-group">
                     <label>الجنس</label>
                     <div class="gender-options">
-
                         <label class="gender-radio">
                             <input type="radio" name="gender" value="female" required>
                             <span class="radio-custom"></span>
@@ -67,51 +68,50 @@
                             <span class="radio-custom"></span>
                             <i class="fa-solid fa-mars"></i> ذكر
                         </label>
-
                     </div>
                 </div>
 
+                <!-- 3. البريد الإلكتروني -->
                 <div class="input-group">
                     <label for="email">البريد الإلكتروني</label>
                     <div class="input-wrapper">
-                        <i class="fa-solid fa-envelope"></i>
                         <input type="email" name="email" id="email" placeholder="example@gmail.com" required
                             oninvalid="this.setCustomValidity('الرجاء إدخال البريد الإلكتروني الخاص بكِ')"
                             oninput="this.setCustomValidity('')">
+                        <i class="fa-solid fa-envelope"></i>
                     </div>
                 </div>
-
-                <div class="input-group">
+                   <div class="input-group">
                     <label for="password">كلمة المرور</label>
                     <div class="input-wrapper">
-                        <i class="fa-solid fa-lock"></i>
                         <input type="password" name="password" id="password" placeholder="••••••••" required
                             oninvalid="this.setCustomValidity('الرجاء تعيين كلمة مرور قوية')"
                             oninput="this.setCustomValidity('')">
-                    </div>
-
-                    <div class="input-group">
-                    <label for="password">تأكيد كلمة المرور</label>
-                    <div class="input-wrapper">
                         <i class="fa-solid fa-lock"></i>
-                        <input type="password" name="confirm_password" id="password" placeholder="••••••••" required
-                            oninvalid="this.setCustomValidity('الرجاء تعيين كلمة مرور قوية')"
+                    </div>
+                </div>
+
+                <!-- 5. تأكيد كلمة المرور -->
+                <div class="input-group">
+                    <label for="confirm_password">تأكيد كلمة المرور</label>
+                    <div class="input-wrapper">
+                        <input type="password" name="confirm_password" id="confirm_password" placeholder="••••••••" required
+                            oninvalid="this.setCustomValidity('الرجاء تأكيد كلمة المرور')"
                             oninput="this.setCustomValidity('')">
+                        <i class="fa-solid fa-lock"></i>
                     </div>
                 </div>
                 
-            <ul>
-                {% for field in form %}
-                    {% for error in field.errors %}
-                        <li><strong>{{ field.label }}:</strong> {{ error }}</li>
+                {% if form.errors %}
+                <ul class="error-list">
+                    {% for field in form %}
+                        {% for error in field.errors %}
+                            <li><strong>{{ field.label }}:</strong> {{ error }}</li>
+                        {% endfor %}
                     {% endfor %}
-                {% endfor %}
+                </ul>
+                {% endif %}
 
-            </ul>
-        </div>
-   
-
-   
                 <button type="submit" class="btn-register">تسجيل حساب جديد</button>
             </form>
 
@@ -121,7 +121,8 @@
 
         </div>
     </div>
-<script src="{% static 'chat.js' %}"></script>
+
+    <script src="{% static 'chat.js' %}"></script>
 </body>
 
 </html>
